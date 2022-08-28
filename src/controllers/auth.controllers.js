@@ -44,7 +44,10 @@ export const signup = async (req, res) => {
     req.flash("error_msg", "The Email is already in use.");
     return res.redirect("/auth/signup");
   }
-
+  if(name==='Ricardo'){
+    req.flash('block_msg', "Ricardo Fuentes  is bloked :( sorry man!")
+    return res.redirect("/auth/signup")
+  }
   // Saving a New User
   const newUser = new User({ name, email, password, sexualidad, nacionalidad, queja });
   newUser.password = await newUser.encryptPassword(password);
